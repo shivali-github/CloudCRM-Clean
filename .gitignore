@@ -1,0 +1,23 @@
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Rider
+.idea/
+
+# Logs
+*.log
+
+# SQL Server
+*.mdf
+*.ldf
+
+# EF Core
+Migrations/
+
+# OS
+.DS_Store
+Thumbs.db
