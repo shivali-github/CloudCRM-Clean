@@ -20,5 +20,15 @@ public class MembershipConfiguration : IEntityTypeConfiguration<Membership>
 
         builder.Property(m => m.IsActive)
                .IsRequired();
+
+                // Relationship: Membership -> Customer
+        builder.HasOne(m => m.Customer)
+               .WithMany(c => c.Memberships)
+               .HasForeignKey(m => m.CustomerId);
+
+        // Relationship: Membership -> MembershipType
+        builder.HasOne(m => m.MembershipType)
+               .WithMany(mt => mt.Memberships)
+               .HasForeignKey(m => m.MembershipTypeId);
     }
 }

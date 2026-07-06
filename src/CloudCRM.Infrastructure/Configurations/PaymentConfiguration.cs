@@ -23,5 +23,9 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
 
         builder.Property(p => p.PaymentDate)
                .IsRequired();
+
+        builder.HasOne(p => p.Membership)
+               .WithMany(m => m.Payments)
+               .HasForeignKey(p => p.MembershipId);
     }
 }
