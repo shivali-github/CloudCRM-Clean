@@ -23,4 +23,7 @@ public class Customer
     public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 
     public DateTime? UpdatedDate { get; set; }
+
+    //Navigation Property
+    public ICollection<Membership> Memberships{get;set;} = new List<Membership>();
 }

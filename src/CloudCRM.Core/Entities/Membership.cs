@@ -13,4 +13,13 @@ public class Membership
     public DateTime EndDate { get; set; }
 
     public bool IsActive { get; set; }
+
+      // Navigation Property
+    public Customer Customer { get; set; } = null!;
+
+    // Navigation Property
+    public MembershipType MembershipType { get; set; } = null!;
+
+    // Navigation Property
+    public ICollection<Payment> Payments { get; set; } = new List<Payment>();
 }

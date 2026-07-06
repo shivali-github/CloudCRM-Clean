@@ -13,4 +13,7 @@ public class Payment
     public string PaymentMethod { get; set; } = string.Empty;
 
     public string TransactionReference { get; set; } = string.Empty;
+
+     // Navigation Property
+    public Membership Membership { get; set; } = null!;
 }

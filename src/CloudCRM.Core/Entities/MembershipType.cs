@@ -9,4 +9,7 @@ public class MembershipType
     public decimal MonthlyFee { get; set; }
 
     public string Description { get; set; } = string.Empty;
+
+     // Navigation Property
+    public ICollection<Membership> Memberships { get; set; } = new List<Membership>();
 }
