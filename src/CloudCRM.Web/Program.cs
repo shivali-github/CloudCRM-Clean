@@ -1,5 +1,9 @@
 using CloudCRM.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using CloudCRM.Application.Interfaces.Repositories;
+using CloudCRM.Infrastructure.Repositories;
+using CloudCRM.Application.Interfaces.Services;
+using CloudCRM.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +13,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 var app = builder.Build();
 
