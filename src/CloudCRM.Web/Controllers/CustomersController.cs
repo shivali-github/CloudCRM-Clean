@@ -52,5 +52,60 @@ public class CustomersController : Controller
         await _customerService.CreateCustomerAsync(customer);
 
         return RedirectToAction(nameof(Index));
-}
+    }
+
+    public async Task<IActionResult> Edit(int id)
+    {
+        var customer = await _customerService.GetCustomerByIdAsync(id);
+
+        if (customer == null)
+        {
+            return NotFound();
+        }
+
+        var model = new CustomerViewModel
+        {
+            Id = customer.Id,
+            FirstName = customer.FirstName,
+            LastName = customer.LastName,
+            Email = customer.Email,
+            PhoneNumber = customer.PhoneNumber,
+            DateOfBirth = customer.DateOfBirth,
+            Address = customer.Address,
+            City = customer.City,
+            Country = customer.Country
+        };
+
+        return View(model);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(CustomerViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        var customer = await _customerService.GetCustomerByIdAsync(model.Id);
+
+        if (customer == null)
+        {
+            return NotFound();
+        }
+
+        customer.FirstName = model.FirstName;
+        customer.LastName = model.LastName;
+        customer.Email = model.Email;
+        customer.PhoneNumber = model.PhoneNumber;
+        customer.DateOfBirth = model.DateOfBirth;
+        customer.Address = model.Address;
+        customer.City = model.City;
+        customer.Country = model.Country;
+
+        await _customerService.UpdateCustomerAsync(customer);
+
+        return RedirectToAction(nameof(Index));
+    }
 }

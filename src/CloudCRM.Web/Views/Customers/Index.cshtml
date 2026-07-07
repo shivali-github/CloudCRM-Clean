@@ -15,6 +15,7 @@
             <th>Last Name</th>
             <th>Email</th>
             <th>Phone</th>
+            <th>Actions</th>
         </tr>
     </thead>
 
@@ -27,6 +28,14 @@
             <td>@customer.LastName</td>
             <td>@customer.Email</td>
             <td>@customer.PhoneNumber</td>
+
+            <td>
+                <a asp-action="Edit"
+                    asp-route-id="@customer.Id"
+                    class="btn btn-warning btn-sm">
+                    Edit
+                </a>
+            </td>
         </tr>
     }
 

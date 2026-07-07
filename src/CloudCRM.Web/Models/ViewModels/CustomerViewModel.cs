@@ -4,6 +4,8 @@ namespace CloudCRM.Web.Models.ViewModels;
 
 public class CustomerViewModel
 {
+    public int Id { get; set; }
+    
     [Required]
     [StringLength(50)]
     public string FirstName { get; set; } = string.Empty;
