@@ -108,4 +108,38 @@ public class CustomersController : Controller
 
         return RedirectToAction(nameof(Index));
     }
+
+    public async Task<IActionResult> Delete(int id)
+    {
+        var customer = await _customerService.GetCustomerByIdAsync(id);
+
+        if (customer == null)
+        {
+            return NotFound();
+        }
+
+        var model = new CustomerViewModel
+        {
+            Id = customer.Id,
+            FirstName = customer.FirstName,
+            LastName = customer.LastName,
+            Email = customer.Email,
+            PhoneNumber = customer.PhoneNumber,
+            DateOfBirth = customer.DateOfBirth,
+            Address = customer.Address,
+            City = customer.City,
+            Country = customer.Country
+        };
+
+        return View(model);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(CustomerViewModel model)
+    {
+        await _customerService.DeleteCustomerAsync(model.Id);
+
+        return RedirectToAction(nameof(Index));
+    }
 }
