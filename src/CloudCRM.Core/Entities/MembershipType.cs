@@ -6,7 +6,9 @@ public class MembershipType
 
     public string Name { get; set; } = string.Empty;
 
-    public decimal MonthlyFee { get; set; }
+    public int DurationInMonths { get; set; }
+
+    public decimal Price { get; set; }
 
     public string Description { get; set; } = string.Empty;
 

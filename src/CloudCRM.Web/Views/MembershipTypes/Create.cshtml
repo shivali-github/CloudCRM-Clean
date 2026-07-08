@@ -1,0 +1,35 @@
+@model CloudCRM.Web.Models.ViewModels.MembershipTypeViewModel
+
+<h2>Create Membership Type</h2>
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control"/>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DurationInMonths"></label>
+        <input asp-for="DurationInMonths" class="form-control"/>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control"/>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <button class="btn btn-primary">Save</button>
+
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"/>
+}

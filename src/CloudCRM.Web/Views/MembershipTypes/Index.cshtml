@@ -1,0 +1,50 @@
+@model IEnumerable<CloudCRM.Core.Entities.MembershipType>
+
+<h2>Membership Types</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">
+        Create Membership Type
+    </a>
+</p>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Duration</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+@foreach(var item in Model)
+{
+    <tr>
+        <td>@item.Name</td>
+        <td>@item.DurationInMonths</td>
+        <td>@item.Price</td>
+        <td>@item.Description</td>
+        <td>
+            <a asp-action="Edit"
+                asp-route-id="@item.Id"
+                class="btn btn-warning btn-sm">
+                    Edit
+            </a>
+
+            <a asp-action="Delete"
+                asp-route-id="@item.Id"
+                class="btn btn-danger btn-sm">
+                    Delete
+            </a>
+        </td>
+    </tr>
+}
+
+    </tbody>
+
+</table>

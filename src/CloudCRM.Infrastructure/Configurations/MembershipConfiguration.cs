@@ -18,6 +18,9 @@ public class MembershipConfiguration : IEntityTypeConfiguration<Membership>
         builder.Property(m => m.EndDate)
                .IsRequired();
 
+        builder.Property(m => m.Price)
+               .HasColumnType("decimal(10,2)");
+
         builder.Property(m => m.IsActive)
                .IsRequired();
 

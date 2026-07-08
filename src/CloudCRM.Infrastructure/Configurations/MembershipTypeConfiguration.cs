@@ -19,7 +19,11 @@ public class MembershipTypeConfiguration : IEntityTypeConfiguration<MembershipTy
         builder.Property(mt => mt.Description)
                .HasMaxLength(500);
 
-        builder.Property(mt => mt.MonthlyFee)
-               .HasColumnType("decimal(10,2)");
+       builder.Property(m => m.DurationInMonths)
+              .IsRequired();
+
+       builder.Property(m => m.Price)
+              .HasColumnType("decimal(10,2)")
+              .IsRequired();
     }
 }

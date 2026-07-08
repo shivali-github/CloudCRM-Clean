@@ -12,6 +12,8 @@ public class Membership
 
     public DateTime EndDate { get; set; }
 
+    public decimal Price { get; set; }
+
     public bool IsActive { get; set; }
 
       // Navigation Property

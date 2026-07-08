@@ -5,6 +5,7 @@ using CloudCRM.Infrastructure.Repositories;
 using CloudCRM.Application.Interfaces.Services;
 using CloudCRM.Application.Services;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,6 +17,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IMembershipTypeRepository, MembershipTypeRepository>();
+builder.Services.AddScoped<IMembershipTypeService, MembershipTypeService>();
+
 
 var app = builder.Build();
 
