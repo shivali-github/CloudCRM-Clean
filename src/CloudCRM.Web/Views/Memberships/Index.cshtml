@@ -18,6 +18,7 @@
             <th>End Date</th>
             <th>Price</th>
             <th>Status</th>
+            <th>Actions</th>
         </tr>
     </thead>
 
@@ -48,6 +49,18 @@
 
                 <td>
                     @(item.IsActive ? "Active" : "Inactive")
+                </td>
+                <td>
+                    <a asp-action="Edit"
+                        asp-route-id="@item.Id"
+                        class="btn btn-sm btn-warning">
+                            Edit
+                    </a>
+                    <a asp-action="Delete"
+                        asp-route-id="@item.Id"
+                        class="btn btn-sm btn-danger">
+                            Delete
+                    </a>
                 </td>
             </tr>
         }

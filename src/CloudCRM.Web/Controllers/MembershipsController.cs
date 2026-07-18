@@ -105,4 +105,90 @@ public class MembershipsController : Controller
             Text = m.Name
         }).ToList();
     }
+
+    public async Task<IActionResult> Edit(int id)
+    {
+        var membership = await _membershipService
+            .GetMembershipByIdAsync(id);
+
+        if (membership == null)
+            return NotFound();
+
+        var model = new MembershipViewModel
+        {
+            Id = membership.Id,
+            CustomerId = membership.CustomerId,
+            MembershipTypeId = membership.MembershipTypeId,
+            StartDate = membership.StartDate,
+            EndDate = membership.EndDate,
+            Price = membership.Price,
+            IsActive = membership.IsActive
+        };
+
+        await LoadDropdowns(model);
+
+        return View(model);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(MembershipViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            await LoadDropdowns(model);
+            return View(model);
+        }
+
+        var membershipType = await _membershipTypeService
+            .GetMembershipTypeByIdAsync(model.MembershipTypeId);
+
+        if (membershipType == null)
+        {
+            ModelState.AddModelError(
+                "",
+                "Invalid Membership Type.");
+
+            await LoadDropdowns(model);
+
+            return View(model);
+        }
+
+        var membership = new Membership
+        {
+            Id = model.Id,
+            CustomerId = model.CustomerId,
+            MembershipTypeId = model.MembershipTypeId,
+            StartDate = model.StartDate,
+            EndDate = model.StartDate.AddMonths(
+                membershipType.DurationInMonths),
+            Price = membershipType.Price,
+            IsActive = model.IsActive
+        };
+
+        await _membershipService
+            .UpdateMembershipAsync(membership);
+
+        return RedirectToAction(nameof(Index));
+    }
+
+    public async Task<IActionResult> Delete(int id)
+    {
+        var membership = await _membershipService
+            .GetMembershipByIdAsync(id);
+
+        if (membership == null)
+            return NotFound();
+
+        return View(membership);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        await _membershipService.DeleteMembershipAsync(id);
+
+        return RedirectToAction(nameof(Index));
+    }
 }
