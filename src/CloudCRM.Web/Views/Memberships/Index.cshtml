@@ -1,0 +1,56 @@
+@model IEnumerable<CloudCRM.Core.Entities.Membership>
+
+<h2>Memberships</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">
+        Create Membership
+    </a>
+</p>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Membership Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Price</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Customer.FirstName
+                    @item.Customer.LastName
+                </td>
+
+                <td>
+                    @item.MembershipType.Name
+                </td>
+
+                <td>
+                    @item.StartDate.ToShortDateString()
+                </td>
+
+                <td>
+                    @item.EndDate.ToShortDateString()
+                </td>
+
+                <td>
+                    @item.Price
+                </td>
+
+                <td>
+                    @(item.IsActive ? "Active" : "Inactive")
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

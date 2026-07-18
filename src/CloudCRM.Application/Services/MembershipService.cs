@@ -8,6 +8,11 @@ public class MembershipService : IMembershipService
 {
     private readonly IMembershipRepository _membershipRepository;
 
+    public MembershipService(IMembershipRepository membershipRepository)
+    {
+        _membershipRepository = membershipRepository;
+    }
+
     public async Task<List<Membership>> GetAllMembershipsAsync()
     {
         return await _membershipRepository.GetAllAsync();

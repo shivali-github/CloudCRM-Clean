@@ -19,7 +19,7 @@ builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IMembershipTypeRepository, MembershipTypeRepository>();
 builder.Services.AddScoped<IMembershipTypeService, MembershipTypeService>();
-builder.Services.AddScoped<IMembershipRepository, MembershipRepository>();
+builder.Services.AddScoped<IMembershipRepository, MembershipRepository>();  
 builder.Services.AddScoped<IMembershipService, MembershipService>();
 
 
