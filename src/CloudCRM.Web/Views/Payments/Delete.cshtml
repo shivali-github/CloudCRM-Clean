@@ -1,0 +1,47 @@
+@model CloudCRM.Core.Entities.Payment
+
+<h2>Delete Payment</h2>
+
+<h4>Are you sure you want to delete this payment?</h4>
+
+<div class="mb-3">
+    <strong>Customer:</strong>
+    @Model.Membership.Customer.FirstName
+    @Model.Membership.Customer.LastName
+</div>
+
+<div class="mb-3">
+    <strong>Amount:</strong>
+    @Model.Amount
+</div>
+
+<div class="mb-3">
+    <strong>Payment Date:</strong>
+    @Model.PaymentDate.ToShortDateString()
+</div>
+
+<div class="mb-3">
+    <strong>Payment Method:</strong>
+    @Model.PaymentMethod
+</div>
+
+<div class="mb-3">
+    <strong>Transaction Reference:</strong>
+    @Model.TransactionReference
+</div>
+
+<form asp-action="Delete" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit"
+            class="btn btn-danger">
+        Delete
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

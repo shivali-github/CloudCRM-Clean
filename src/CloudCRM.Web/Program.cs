@@ -21,6 +21,8 @@ builder.Services.AddScoped<IMembershipTypeRepository, MembershipTypeRepository>(
 builder.Services.AddScoped<IMembershipTypeService, MembershipTypeService>();
 builder.Services.AddScoped<IMembershipRepository, MembershipRepository>();  
 builder.Services.AddScoped<IMembershipService, MembershipService>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 
 var app = builder.Build();

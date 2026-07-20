@@ -1,0 +1,68 @@
+@model IEnumerable<CloudCRM.Core.Entities.Payment>
+
+<h2>Payments</h2>
+
+<p>
+    <a asp-action="Create"
+       class="btn btn-primary">
+        Create Payment
+    </a>
+</p>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Payment Date</th>
+            <th>Payment Method</th>
+            <th>Transaction Reference</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Membership.Customer.FirstName
+                    @item.Membership.Customer.LastName
+                </td>
+
+                <td>
+                    @item.Amount
+                </td>
+
+                <td>
+                    @item.PaymentDate.ToShortDateString()
+                </td>
+
+                <td>
+                    @item.PaymentMethod
+                </td>
+
+                <td>
+                    @item.TransactionReference
+                </td>
+
+                <td>
+                    <a asp-action="Edit"
+                        asp-route-id="@item.Id"
+                        class="btn btn-sm btn-warning">
+                        Edit
+                    </a>
+                    <a asp-action="Delete"
+                        asp-route-id="@item.Id"
+                        class="btn btn-sm btn-danger">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

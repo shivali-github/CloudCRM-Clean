@@ -1,0 +1,62 @@
+@model CloudCRM.Web.Models.ViewModels.PaymentViewModel
+
+<h2>Edit Payment</h2>
+
+<form asp-action="Edit" method="post">
+
+    <input asp-for="Id" type="hidden" />
+
+    <div class="mb-3">
+        <label asp-for="MembershipId"></label>
+
+        <select asp-for="MembershipId"
+                asp-items="Model.Memberships"
+                class="form-select">
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Amount"></label>
+
+        <input asp-for="Amount"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="PaymentDate"></label>
+
+        <input asp-for="PaymentDate"
+               type="date"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="PaymentMethod"></label>
+
+        <input asp-for="PaymentMethod"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="TransactionReference"></label>
+
+        <input asp-for="TransactionReference"
+               class="form-control" />
+    </div>
+
+    <button type="submit"
+            class="btn btn-primary">
+        Save
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
