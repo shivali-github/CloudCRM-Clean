@@ -1,0 +1,43 @@
+@model CloudCRM.Web.Models.ViewModels.DashboardViewModel
+
+<h2>Dashboard</h2>
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="card text-center mb-3">
+            <div class="card-body">
+                <h5>Total Customers</h5>
+                <h2>@Model.TotalCustomers</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center mb-3">
+            <div class="card-body">
+                <h5>Active Memberships</h5>
+                <h2>@Model.ActiveMemberships</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center mb-3">
+            <div class="card-body">
+                <h5>Total Payments</h5>
+                <h2>@Model.TotalPayments</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center mb-3">
+            <div class="card-body">
+                <h5>Total Revenue</h5>
+                <h2>£@Model.TotalRevenue.ToString("N2")</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
