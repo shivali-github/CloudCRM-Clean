@@ -1,14 +1,18 @@
 @model IEnumerable<CloudCRM.Core.Entities.Membership>
 
-<h2>Memberships</h2>
+@{
+    ViewData["Title"] = "Memberships";
+}
+
+<h2 class="mb-4 fw-bold">Memberships</h2>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">
+    <a asp-action="Create" class="btn btn-primary mb-3">
         Create Membership
     </a>
 </p>
 
-<table class="table table-bordered">
+<table class="table table-hover table-striped align-middle shadow-sm">
 
     <thead>
         <tr>
@@ -48,17 +52,28 @@
                 </td>
 
                 <td>
-                    @(item.IsActive ? "Active" : "Inactive")
+                    @if (item.IsActive)
+                    {
+                        <span class="badge bg-success">
+                            Active
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">
+                            Inactive
+                        </span>
+                    }
                 </td>
                 <td>
                     <a asp-action="Edit"
                         asp-route-id="@item.Id"
-                        class="btn btn-sm btn-warning">
+                        class="btn btn-outline-primary btn-sm">
                             Edit
                     </a>
                     <a asp-action="Delete"
                         asp-route-id="@item.Id"
-                        class="btn btn-sm btn-danger">
+                        class="btn btn-outline-danger btn-sm">
                             Delete
                     </a>
                 </td>

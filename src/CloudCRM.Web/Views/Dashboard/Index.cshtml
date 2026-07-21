@@ -1,43 +1,51 @@
 @model CloudCRM.Web.Models.ViewModels.DashboardViewModel
 
-<h2>Dashboard</h2>
+@{
+    ViewData["Title"] = "Dashboard";
+}
 
-<div class="row">
+<div class="container mt-4">
 
-    <div class="col-md-3">
-        <div class="card text-center mb-3">
-            <div class="card-body">
-                <h5>Total Customers</h5>
-                <h2>@Model.TotalCustomers</h2>
+    <h2 class="mb-4 fw-bold">Dashboard</h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-primary text-white">
+                <div class="card-body text-center">
+                    <h5>Total Customers</h5>
+                    <h1>@Model.TotalCustomers</h1>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-3">
-        <div class="card text-center mb-3">
-            <div class="card-body">
-                <h5>Active Memberships</h5>
-                <h2>@Model.ActiveMemberships</h2>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-success text-white">
+                <div class="card-body text-center">
+                    <h5>Active Memberships</h5>
+                    <h1>@Model.ActiveMemberships</h1>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-3">
-        <div class="card text-center mb-3">
-            <div class="card-body">
-                <h5>Total Payments</h5>
-                <h2>@Model.TotalPayments</h2>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-warning text-dark">
+                <div class="card-body text-center">
+                    <h5>Total Payments</h5>
+                    <h1>@Model.TotalPayments</h1>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-3">
-        <div class="card text-center mb-3">
-            <div class="card-body">
-                <h5>Total Revenue</h5>
-                <h2>£@Model.TotalRevenue.ToString("N2")</h2>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-danger text-white">
+                <div class="card-body text-center">
+                    <h5>Total Revenue</h5>
+                    <h1>£@Model.TotalRevenue.ToString("N2")</h1>
+                </div>
             </div>
         </div>
+
     </div>
 
 </div>

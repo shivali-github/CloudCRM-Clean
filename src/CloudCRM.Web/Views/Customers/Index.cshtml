@@ -1,14 +1,18 @@
 @model IEnumerable<CloudCRM.Core.Entities.Customer>
 
-<h2>Customers</h2>
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<h2 class="mb-4 fw-bold">Customers</h2>
 
 <p>
-    <a asp-action="Create" class="btn btn-success">
+    <a asp-action="Create" class="btn btn-success mb-3">
         Create New Customer
     </a>
 </p>
 
-<table class="table table-bordered table-striped">
+<table class="table table-hover table-striped align-middle shadow-sm">
     <thead>
         <tr>
             <th>First Name</th>
@@ -32,13 +36,13 @@
             <td>
                 <a asp-action="Edit"
                     asp-route-id="@customer.Id"
-                    class="btn btn-warning btn-sm">
+                    class="btn btn-outline-primary btn-sm">
                     Edit
                 </a>
 
                 <a asp-action="Delete"
                     asp-route-id="@customer.Id"
-                    class="btn btn-danger btn-sm">
+                    class="btn btn-outline-danger btn-sm">
                     Delete
                 </a>
             </td>
