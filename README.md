@@ -28,7 +28,7 @@ A modern CRM application built using ASP.NET Core MVC and Clean Architecture.
 
 ### Dashboard
 
-![Dashboard](Screenshots/dashboard.png)(Add screenshots here)
+![Dashboard](Screenshots/dashboard.png)
 
 ---
 
