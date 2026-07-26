@@ -1,10 +1,12 @@
 using CloudCRM.Application.Interfaces.Services;
 using CloudCRM.Core.Entities;
 using CloudCRM.Web.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CloudCRM.Web.Controllers;
 
+[Authorize(Roles = "Admin")]
 public class MembershipTypesController : Controller
 {
     private readonly IMembershipTypeService _membershipTypeService;

@@ -1,10 +1,12 @@
 using CloudCRM.Application.Interfaces.Services;
 using CloudCRM.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CloudCRM.Web.Controllers;
 using CloudCRM.Web.Models.ViewModels;
 
+[Authorize(Roles = "Admin")]
 public class CustomersController : Controller
 {
     private readonly ICustomerService _customerService;

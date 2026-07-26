@@ -5,7 +5,9 @@ using CloudCRM.Web.Models.ViewModels;
 namespace CloudCRM.Web.Controllers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CloudCRM.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 
+[Authorize(Roles = "Admin")]
 public class MembershipsController : Controller
 {
     private readonly IMembershipService _membershipService;

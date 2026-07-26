@@ -1,9 +1,11 @@
 using CloudCRM.Application.Interfaces.Services;
 using CloudCRM.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Authorization;
 namespace CloudCRM.Web.Controllers;
 
+
+[Authorize(Roles = "Admin")]
 public class DashboardController : Controller
 {
     private readonly ICustomerService _customerService;

@@ -3,9 +3,11 @@ using CloudCRM.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CloudCRM.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CloudCRM.Web.Controllers;
 
+[Authorize(Roles = "Admin")]
 public class PaymentsController : Controller
 {
     private readonly IPaymentService _paymentService;
