@@ -1,0 +1,29 @@
+
+
+services:
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: cloudcrm-sql
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "YourStrongPassword123!"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_16data:/var/opt/mssql
+      
+  cloudcrm:
+    build:
+      context: .
+      dockerfile: src/CloudCRM.Web/Dockerfile
+    container_name: cloudcrm-web
+    ports:
+      - "8081:8080"
+    depends_on:
+      - sqlserver
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=CloudCRMDb;User Id=sa;Password=YourStrongPassword123!;TrustServerCertificate=True;Encrypt=False;"
+
+volumes:
+  sql_16data:
