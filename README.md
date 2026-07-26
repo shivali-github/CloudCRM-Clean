@@ -12,6 +12,7 @@ A modern CRM application built using ASP.NET Core MVC and Clean Architecture.
 - ASP.NET Core Identity Authentication
 - Entity Framework Core
 - SQL Server
+- Role-based Authorization (Admin)
 
 ## Technologies
 
@@ -23,6 +24,7 @@ A modern CRM application built using ASP.NET Core MVC and Clean Architecture.
 - Clean Architecture
 - Repository Pattern
 - Dependency Injection
+- ASP.NET Core Identity
 
 ## Screenshots
 
@@ -40,7 +42,7 @@ A modern CRM application built using ASP.NET Core MVC and Clean Architecture.
 
 ### Membership Types
 
-![Membership Types](Screenshots/membership types.png)
+![Membership Types](Screenshots/membership-types.png)
 
 ---
 
@@ -56,12 +58,24 @@ A modern CRM application built using ASP.NET Core MVC and Clean Architecture.
 
 ---
 
+## Security
+
+- Custom login page
+- ASP.NET Core Identity
+- Seeded Admin role and user
+- Role-based protection using `[Authorize(Roles = "Admin")]`
+
 ## Installation
 
-git clone ...
+```bash
+git clone <your-repository-url>
+cd CloudCRM-Clean
 
 dotnet restore
 
-dotnet ef database update
+dotnet ef database update \
+  --project src/CloudCRM.Infrastructure \
+  --startup-project src/CloudCRM.Web
 
-dotnet run
+dotnet run --project src/CloudCRM.Web
+```
