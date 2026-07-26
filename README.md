@@ -78,4 +78,11 @@ dotnet ef database update \
   --startup-project src/CloudCRM.Web
 
 dotnet run --project src/CloudCRM.Web
+
 ```
+## Docker
+
+Run the application using Docker Compose:
+
+```bash
+docker compose up --build

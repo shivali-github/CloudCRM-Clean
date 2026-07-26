@@ -63,13 +63,31 @@ app.MapControllerRoute(
 
 // app.MapRazorPages();
 
-using (var scope = app.Services.CreateScope())
+/* using (var scope = app.Services.CreateScope())
 {
     var userManager =
         scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
     var roleManager =
         scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+    await IdentitySeeder.SeedAsync(userManager, roleManager);
+} */
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var dbContext =
+        services.GetRequiredService<ApplicationDbContext>();
+
+    await dbContext.Database.MigrateAsync();
+
+    var userManager =
+        services.GetRequiredService<UserManager<IdentityUser>>();
+
+    var roleManager =
+        services.GetRequiredService<RoleManager<IdentityRole>>();
 
     await IdentitySeeder.SeedAsync(userManager, roleManager);
 }
