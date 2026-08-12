@@ -6,11 +6,11 @@ public static class IdentitySeeder
 {
     public static async Task SeedAsync(
         UserManager<IdentityUser> userManager,
-        RoleManager<IdentityRole> roleManager)
+        RoleManager<IdentityRole> roleManager,
+        string adminEmail,
+        string adminPassword)
     {
         const string adminRole = "Admin";
-        const string adminEmail = "admin@cloudcrm.com";
-        const string adminPassword = "Admin@12345";
 
         if (!await roleManager.RoleExistsAsync(adminRole))
         {

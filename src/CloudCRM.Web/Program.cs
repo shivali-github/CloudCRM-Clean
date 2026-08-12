@@ -12,9 +12,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 // builder.Services.AddRazorPages();
 
+/*builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")));*/
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlOptions =>
+        {
+            sqlOptions.EnableRetryOnFailure();
+        }));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
@@ -89,7 +97,25 @@ using (var scope = app.Services.CreateScope())
     var roleManager =
         services.GetRequiredService<RoleManager<IdentityRole>>();
 
-    await IdentitySeeder.SeedAsync(userManager, roleManager);
+    var adminEmail =
+    builder.Configuration["AdminUser:Email"];
+
+    var adminPassword =
+    builder.Configuration["AdminUser:Password"];
+
+    if (string.IsNullOrWhiteSpace(adminEmail) ||
+    string.IsNullOrWhiteSpace(adminPassword))
+    {
+        throw new InvalidOperationException(
+        "Admin user configuration is missing.");
+    }
+
+    /*await IdentitySeeder.SeedAsync(userManager, roleManager);*/
+    await IdentitySeeder.SeedAsync(
+    userManager,
+    roleManager,
+    adminEmail,
+    adminPassword);
 }
 
 app.Run();
